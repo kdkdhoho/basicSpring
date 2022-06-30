@@ -1,9 +1,8 @@
 package com.example.basicSpring.order;
 
-import com.example.basicSpring.Member.Grade;
-import com.example.basicSpring.Member.Member;
-import com.example.basicSpring.Member.MemberService;
-import com.example.basicSpring.Member.MemberServiceImp;
+import com.example.basicSpring.AppConfig;
+import com.example.basicSpring.Discount.DiscountPolicy;
+import com.example.basicSpring.Member.*;
 import com.example.basicSpring.Order.Order;
 import com.example.basicSpring.Order.OrderService;
 import com.example.basicSpring.Order.OrderServiceImpl;
@@ -12,8 +11,9 @@ import org.junit.jupiter.api.Test;
 
 public class OrderServiceTest {
 
-    OrderService orderService = new OrderServiceImpl();
-    MemberService memberService = new MemberServiceImp();
+    AppConfig appConfig = new AppConfig();
+    MemberService memberService = appConfig.memberService();
+    OrderService orderService = appConfig.orderService();
 
     @Test
     void createOrder() {
@@ -23,6 +23,6 @@ public class OrderServiceTest {
 
         Order order = orderService.createOrder(memberId, "맥북", 1800000);
 
-        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
+        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1800000/10);
     }
 }

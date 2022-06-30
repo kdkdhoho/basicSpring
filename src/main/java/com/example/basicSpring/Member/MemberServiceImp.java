@@ -7,7 +7,11 @@ import com.example.basicSpring.Member.MemoryMemberRepository;
 
 public class MemberServiceImp implements MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberServiceImp(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     @Override
     public void join(Member member) {
