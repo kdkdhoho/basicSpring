@@ -4,11 +4,10 @@ import com.example.basicSpring.Member.Grade;
 import com.example.basicSpring.Member.Member;
 
 public class FixDiscountPolicy implements DiscountPolicy {
-
-    private final int discountFixAmount = 1000;
-
     @Override
     public int discount(Member member, int price) {
+        int discountFixAmount = 1000;
+
         if(member.getGrade() == Grade.VIP)
             return discountFixAmount;
 
